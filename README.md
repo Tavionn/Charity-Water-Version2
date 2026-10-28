@@ -16,9 +16,10 @@ Pick **Easy**, **Normal**, or **Hard** on the role screen. Your choice is rememb
 |---|---|---|---|
 | Village tank goal per level | 80 | 100 | 120 |
 | Village water use, rain speed, polluted drops | slower / fewer | standard | faster / more |
-| Truck timer | 30% longer | standard | 20% shorter |
-| Cases per truck | 2 fewer | standard | 2 more |
+| Truck timer / cases per truck | 30% longer / 2 fewer | standard | 20% longer / 2 more |
 | Leaking cases, forklift speed | fewer / slower | standard | more / faster |
+
+The warehouse was play-tested with a bot that ran hundreds of games: a skilled player can beat every difficulty, and Hard's last truck is the toughest part. On wide screens the player walks and the belt runs faster, so a trip from belt to truck takes the same time on every device.
 
 ## Two roles
 

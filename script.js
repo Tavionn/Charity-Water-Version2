@@ -32,6 +32,7 @@
     carryMax: 3,         // cases you can hold at once
     beltSpeed: 70,
     crateSize: 26,
+    warehouseWalk: 420,  // belt-to-truck distance the timers are balanced for (phones and small windows)
   };
 
   // Difficulty changes each level's goal, the pace, and the time limits.
@@ -42,7 +43,7 @@
   const DIFFICULTY = {
     easy:   { goal: 80,  drain: 0.7,  rain: 0.85, dirty: 0.7,  truckTime: 1.3, truckLoad: -2, leak: 0.7,  lift: 0.8 },
     normal: { goal: 100, drain: 1,    rain: 1,    dirty: 1,    truckTime: 1,   truckLoad: 0,  leak: 1,    lift: 1 },
-    hard:   { goal: 120, drain: 1.35, rain: 1.2,  dirty: 1.35, truckTime: 0.8, truckLoad: 2,  leak: 1.35, lift: 1.25 },
+    hard:   { goal: 120, drain: 1.35, rain: 1.2,  dirty: 1.35, truckTime: 1.2, truckLoad: 2,  leak: 1.2,  lift: 1.25 },
   };
   let difficulty = 'normal';
   try { if (DIFFICULTY[localStorage.getItem('flowquest-difficulty')]) difficulty = localStorage.getItem('flowquest-difficulty'); } catch (_) { /* storage unavailable */ }
@@ -529,7 +530,7 @@
     // Movement (spills slow you down in the warehouse)
     const slow = S.mode === 'warehouse' && p.onGround && S.spills.some((s) => Math.abs(p.x - s.x) < s.w / 2);
     const dir = ((input.right ? 1 : 0) - (input.left ? 1 : 0)) * (isRTL() ? -1 : 1);
-    p.vx = dir * CFG.speed * (slow ? 0.45 : 1);
+    p.vx = dir * CFG.speed * (S.mode === 'warehouse' ? warehouseStride() : 1) * (slow ? 0.45 : 1);
     if (dir) p.facing = dir;
     p.x = clamp(p.x + p.vx * dt, 14, W - 14);
     p.walk = dir && p.onGround ? p.walk + dt * (slow ? 5 : 10) : p.walk;
@@ -744,7 +745,7 @@
     }
     let limit = world.beltEnd - cs / 2;
     S.belt.forEach((c) => {
-      c.x = Math.min(c.x + CFG.beltSpeed * dt, limit);
+      c.x = Math.min(c.x + CFG.beltSpeed * warehouseStride() * dt, limit);
       limit = c.x - spacing;
     });
 
@@ -811,6 +812,12 @@
       }
     }
     S.deliveredFlash = Math.max(0, S.deliveredFlash - dt);
+  }
+
+  // The warehouse stretches to fit the screen. On wide screens the player walks and the
+  // belt runs faster, so a belt-to-truck trip takes the same time on every device.
+  function warehouseStride() {
+    return Math.max(1, (world.truckBack - world.beltEnd) / CFG.warehouseWalk);
   }
 
   function beltReady() {
@@ -2073,7 +2080,7 @@
     ctx.fillStyle = '#202327';
     ctx.fillRect(-10, top, end + 14, 4);
     ctx.fillStyle = 'rgba(255,255,255,0.12)';
-    const off = (S.time * CFG.beltSpeed) % 14;
+    const off = (S.time * CFG.beltSpeed * warehouseStride()) % 14;
     for (let x = -10 + off; x < end + 2; x += 14) ctx.fillRect(x, top + 1, 6, 1);
     // end roller
     ellipse(end + 4, top + 7, 6, 6);
