@@ -576,15 +576,19 @@
     g.alert = Math.max(0, g.alert - dt);
     if (p.x > world.signX - 4) {
       g.alert = 1.5;
-      if (p.invuln <= 0) {
+      if (p.invuln > 0) {
+        // Just sent back (or still flashing from another hit): the fence blocks you.
+        // Bouncing again here let players hold right and climb into the sky.
+        p.x = world.signX - 4;
+      } else {
         S.score = Math.max(0, S.score - 25);
         popup(p.x, p.y - 10, '−25', '#e2574c');
+        hurt(tr('restricted'));
+        p.x = world.signX - 60;
+        p.vy = -320;
+        p.onGround = false;
+        if (S.over) return;
       }
-      hurt(tr('restricted'));
-      p.x = world.signX - 60;
-      p.vy = -320;
-      p.onGround = false;
-      if (S.over) return;
     }
 
     // Spawn drops from the clouds
