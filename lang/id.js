@@ -181,6 +181,7 @@ I18N.register('id', {
   footerNote: 'Setiap tetes berarti. Bantu bawa air bersih kepada yang membutuhkan.',
   visitSite: 'Kunjungi charity: water',
   donate: 'Donasi',
+  close: 'Tutup',
 
   facts: [
     '100% donasi publik untuk charity: water langsung mendanai proyek air bersih.',

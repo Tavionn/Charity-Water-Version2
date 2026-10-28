@@ -181,6 +181,7 @@ I18N.register('sw', {
   footerNote: 'Kila tone lina thamani. Saidia kufikisha maji safi kwa wanaohitaji.',
   visitSite: 'Tembelea charity: water',
   donate: 'Changia',
+  close: 'Funga',
 
   facts: [
     'Asilimia 100 ya michango ya umma kwa charity: water inafadhili moja kwa moja miradi ya maji safi.',

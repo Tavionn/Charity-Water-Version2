@@ -181,6 +181,7 @@ I18N.register('pl', {
   footerNote: 'Każda kropla się liczy. Pomóż dostarczyć czystą wodę potrzebującym.',
   visitSite: 'Odwiedź charity: water',
   donate: 'Przekaż darowiznę',
+  close: 'Zamknij',
 
   facts: [
     '100% darowizn publicznych dla charity: water trafia bezpośrednio na projekty czystej wody.',

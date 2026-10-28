@@ -181,6 +181,7 @@ I18N.register('yo', {
   footerNote: 'Gbogbo ẹ̀kán omi ṣe pàtàkì. Ràn wá lọ́wọ́ láti mú omi mímọ́ dé ọ̀dọ̀ àwọn tó nílò rẹ̀.',
   visitSite: 'Ṣèbẹ̀wò sí charity: water',
   donate: 'Ṣètọrẹ',
+  close: 'Pa á dé',
 
   facts: [
     'Ìdá 100% ti ẹ̀bùn àwọn aráàlú sí charity: water ń lọ tààrà sí iṣẹ́ omi mímọ́.',

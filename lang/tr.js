@@ -181,6 +181,7 @@ I18N.register('tr', {
   footerNote: 'Her damla önemli. İhtiyacı olanlara temiz su ulaştırmaya yardım et.',
   visitSite: 'charity: water’ı ziyaret et',
   donate: 'Bağış yap',
+  close: 'Kapat',
 
   facts: [
     'charity: water’a yapılan kamuya açık bağışların %100’ü doğrudan temiz su projelerine gider.',

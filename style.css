@@ -309,6 +309,12 @@ body.touch .keys-touch { display: block; }
 .btn.primary:hover { background: var(--yellow-soft); }
 .btn.ghost { background: transparent; color: var(--muted); }
 .menu-list { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+/* The ☰ menu: pause items during a game, general items on the role and end screens */
+#menuOverlay { z-index: 6; }
+#menuOverlay[data-context="home"] .game-only,
+#menuOverlay[data-context="game"] .home-only { display: none; }
+#menuOverlay[data-context="home"] #menuDonate { background: var(--yellow); border-color: var(--yellow); color: #16130a; }
+#menuOverlay[data-context="home"] #menuDonate:hover { background: var(--yellow-soft); }
 .end-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
 .end-stats { display: flex; gap: 10px; margin: 4px 0 16px; }
@@ -663,8 +669,6 @@ kbd, .bar-label b, .stat b, .can-label b { unicode-bidi: isolate; direction: ltr
 .footer-links { display: flex; align-items: center; gap: 14px; flex: none; }
 .footer-links a { color: var(--text); font-weight: 600; text-decoration: none; }
 .footer-links a:hover { color: var(--yellow); text-decoration: underline; }
-.footer-links .donate { padding: 5px 14px; border-radius: 999px; background: var(--yellow); color: #16130a; }
-.footer-links .donate:hover { background: var(--yellow-soft); color: #16130a; text-decoration: none; }
 @media (max-width: 760px) {
   .site-footer { padding-inline: 14px; }
   .footer-note { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

@@ -181,6 +181,7 @@ I18N.register('pt', {
   footerNote: 'Cada gota conta. Ajude a levar água limpa a quem precisa.',
   visitSite: 'Visite a charity: water',
   donate: 'Doar',
+  close: 'Fechar',
 
   facts: [
     '100% das doações públicas à charity: water financiam diretamente projetos de água limpa.',

@@ -181,6 +181,7 @@ I18N.register('zh', {
   footerNote: '每一滴水都很重要。帮助把干净的水送到有需要的人身边。',
   visitSite: '访问 charity: water',
   donate: '捐款',
+  close: '关闭',
 
   facts: [
     '捐给 charity: water 的公众善款 100% 直接用于清洁用水项目。',

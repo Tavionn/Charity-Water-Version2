@@ -146,17 +146,20 @@
       </div>
 
       <!-- Menu / Pause -->
-      <div class="overlay" id="menuOverlay">
+      <!-- During a game it pauses; on the role or end screen it shows only the general items -->
+      <div class="overlay" id="menuOverlay" data-context="game">
         <div class="card narrow">
-          <h2 data-i18n="paused">Paused</h2>
+          <h2 class="game-only" data-i18n="paused">Paused</h2>
+          <h2 class="home-only">Flow Quest</h2>
           <div class="menu-list">
-            <button class="btn primary" id="resumeBtn" data-i18n="resume">Resume</button>
-            <button class="btn" id="helpBtn" data-i18n="howTo">How to Play</button>
-            <button class="btn" id="restartBtn" data-i18n="restart">Restart</button>
-            <button class="btn" id="switchBtn" data-i18n="switchRole">Switch Role</button>
+            <button class="btn primary game-only" id="resumeBtn" data-i18n="resume">Resume</button>
+            <button class="btn game-only" id="helpBtn" data-i18n="howTo">How to Play</button>
+            <button class="btn game-only" id="restartBtn" data-i18n="restart">Restart</button>
+            <button class="btn game-only" id="switchBtn" data-i18n="switchRole">Switch Role</button>
             <button class="btn" id="soundBtn" aria-pressed="true">Sound: On</button>
             <a class="btn ghost" href="https://www.charitywater.org" target="_blank" rel="noopener" data-i18n="learnMore">Learn about charity: water</a>
-            <a class="btn ghost" href="https://www.charitywater.org/donate" target="_blank" rel="noopener" data-i18n="donate">Donate</a>
+            <a class="btn ghost" id="menuDonate" href="https://www.charitywater.org/donate" target="_blank" rel="noopener" data-i18n="donate">Donate</a>
+            <button class="btn home-only" id="menuCloseBtn" data-i18n="close">Close</button>
           </div>
         </div>
       </div>
@@ -267,7 +270,6 @@
       <span class="footer-note" data-i18n="footerNote">Every drop counts. Help bring clean water to people in need.</span>
       <nav class="footer-links">
         <a href="https://www.charitywater.org" target="_blank" rel="noopener" data-i18n="visitSite">Visit charity: water</a>
-        <a class="donate" href="https://www.charitywater.org/donate" target="_blank" rel="noopener" data-i18n="donate">Donate</a>
       </nav>
     </footer>
   </div>

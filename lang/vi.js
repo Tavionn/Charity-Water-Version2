@@ -181,6 +181,7 @@ I18N.register('vi', {
   footerNote: 'Mỗi giọt nước đều quý. Hãy giúp mang nước sạch đến những người cần.',
   visitSite: 'Truy cập charity: water',
   donate: 'Quyên góp',
+  close: 'Đóng',
 
   facts: [
     '100% tiền quyên góp công khai cho charity: water được dùng trực tiếp cho các dự án nước sạch.',

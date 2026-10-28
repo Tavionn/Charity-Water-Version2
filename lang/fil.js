@@ -181,6 +181,7 @@ I18N.register('fil', {
   footerNote: 'Mahalaga ang bawat patak. Tumulong na maghatid ng malinis na tubig sa nangangailangan.',
   visitSite: 'Bisitahin ang charity: water',
   donate: 'Mag-donate',
+  close: 'Isara',
 
   facts: [
     'Ang 100% ng mga donasyon ng publiko sa charity: water ay direktang napupunta sa mga proyekto ng malinis na tubig.',

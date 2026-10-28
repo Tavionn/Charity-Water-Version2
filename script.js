@@ -356,8 +356,20 @@
   document.querySelectorAll('.role').forEach((btn) => {
     btn.addEventListener('click', () => startRole(btn.dataset.mode));
   });
+  // The ☰ button pauses a game in progress; on the role or end screen it opens
+  // the general menu (sound, charity: water links) on top of that screen
+  const inGame = () => S.running && !S.over;
+  function openHomeMenu(open) {
+    ui.menuOverlay.dataset.context = 'home';
+    show(ui.menuOverlay, open);
+  }
   $('menuBtn').addEventListener('click', () => {
-    if (S.running && !S.over) togglePause(true);
+    if (inGame()) togglePause(true);
+    else openHomeMenu(!ui.menuOverlay.classList.contains('show'));
+  });
+  $('menuCloseBtn').addEventListener('click', () => openHomeMenu(false));
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !inGame() && ui.menuOverlay.classList.contains('show')) openHomeMenu(false);
   });
   $('resumeBtn').addEventListener('click', () => togglePause(false));
   $('helpBtn').addEventListener('click', () => {
@@ -425,6 +437,7 @@
 
   function togglePause(force) {
     S.paused = typeof force === 'boolean' ? force : !S.paused;
+    ui.menuOverlay.dataset.context = 'game';
     show(ui.menuOverlay, S.paused);
     if (!S.paused) show(ui.helpOverlay, false);
   }

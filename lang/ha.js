@@ -181,6 +181,7 @@ I18N.register('ha', {
   footerNote: 'Kowane digo yana da muhimmanci. Taimaka a kai ruwa mai tsabta ga mabuƙata.',
   visitSite: 'Ziyarci charity: water',
   donate: 'Ba da gudummawa',
+  close: 'Rufe',
 
   facts: [
     'Kashi 100% na gudummawar jama’a ga charity: water yana zuwa kai tsaye ga ayyukan ruwa mai tsabta.',

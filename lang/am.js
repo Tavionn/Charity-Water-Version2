@@ -181,6 +181,7 @@ I18N.register('am', {
   footerNote: 'እያንዳንዱ ጠብታ ዋጋ አለው። ንጹሕ ውሃ ለሚያስፈልጋቸው እንዲደርስ ያግዙ።',
   visitSite: 'charity: waterን ይጎብኙ',
   donate: 'ይለግሱ',
+  close: 'ዝጋ',
 
   facts: [
     'ለcharity: water ከሕዝብ የሚሰጠው ልገሳ 100% በቀጥታ ለንጹሕ ውሃ ፕሮጀክቶች ይውላል።',

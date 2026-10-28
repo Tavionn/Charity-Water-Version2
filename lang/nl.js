@@ -181,6 +181,7 @@ I18N.register('nl', {
   footerNote: 'Elke druppel telt. Help schoon water te brengen naar mensen die het nodig hebben.',
   visitSite: 'Bezoek charity: water',
   donate: 'Doneren',
+  close: 'Sluiten',
 
   facts: [
     '100% van de publieke donaties aan charity: water gaat rechtstreeks naar projecten voor schoon water.',

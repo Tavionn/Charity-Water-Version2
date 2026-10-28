@@ -181,6 +181,7 @@ I18N.register('ja', {
   footerNote: '一滴一滴が大切です。必要な人にきれいな水を届ける手助けを。',
   visitSite: 'charity: water を見る',
   donate: '寄付する',
+  close: '閉じる',
 
   facts: [
     'charity: water への一般からの寄付は 100% がきれいな水のプロジェクトに直接使われます。',

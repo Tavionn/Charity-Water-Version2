@@ -181,6 +181,7 @@ I18N.register('fr', {
   footerNote: 'Chaque goutte compte. Aidez à apporter de l’eau potable à ceux qui en ont besoin.',
   visitSite: 'Visiter charity: water',
   donate: 'Faire un don',
+  close: 'Fermer',
 
   facts: [
     '100 % des dons publics à charity: water financent directement des projets d’eau potable.',

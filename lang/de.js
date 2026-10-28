@@ -181,6 +181,7 @@ I18N.register('de', {
   footerNote: 'Jeder Tropfen zählt. Hilf mit, sauberes Wasser zu Menschen in Not zu bringen.',
   visitSite: 'charity: water besuchen',
   donate: 'Spenden',
+  close: 'Schließen',
 
   facts: [
     '100 % der öffentlichen Spenden an charity: water fließen direkt in Projekte für sauberes Wasser.',

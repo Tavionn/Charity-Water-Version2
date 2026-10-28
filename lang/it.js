@@ -181,6 +181,7 @@ I18N.register('it', {
   footerNote: 'Ogni goccia conta. Aiuta a portare acqua pulita a chi ne ha bisogno.',
   visitSite: 'Visita charity: water',
   donate: 'Dona',
+  close: 'Chiudi',
 
   facts: [
     'Il 100% delle donazioni pubbliche a charity: water finanzia direttamente progetti per l’acqua pulita.',

@@ -181,6 +181,7 @@ I18N.register('ko', {
   footerNote: '모든 물방울이 소중합니다. 필요한 사람들에게 깨끗한 물을 전해 주세요.',
   visitSite: 'charity: water 방문하기',
   donate: '기부하기',
+  close: '닫기',
 
   facts: [
     'charity: water에 들어오는 일반 기부금은 100% 깨끗한 물 사업에 직접 쓰여요.',

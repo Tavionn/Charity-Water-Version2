@@ -181,6 +181,7 @@ I18N.register('fa', {
   footerNote: 'هر قطره مهم است. کمک کنید آب سالم به نیازمندان برسد.',
   visitSite: 'بازدید از charity: water',
   donate: 'کمک مالی',
+  close: 'بستن',
 
   facts: [
     '۱۰۰٪ کمک‌های عمومی به charity: water مستقیماً صرف پروژه‌های آب سالم می‌شود.',

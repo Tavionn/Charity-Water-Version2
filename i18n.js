@@ -250,6 +250,7 @@
       footerNote: 'Every drop counts. Help bring clean water to people in need.',
       visitSite: 'Visit charity: water',
       donate: 'Donate',
+      close: 'Close',
 
       facts: [
         '100% of public donations to charity: water go directly to fund clean water projects.',

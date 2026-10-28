@@ -181,6 +181,7 @@ I18N.register('he', {
   footerNote: 'כל טיפה חשובה. עזרו להביא מים נקיים לאנשים שזקוקים להם.',
   visitSite: 'בקרו ב־charity: water',
   donate: 'תרמו',
+  close: 'סגירה',
 
   facts: [
     '100% מהתרומות מהציבור ל-charity: water מממנות ישירות פרויקטים של מים נקיים.',
