@@ -34,6 +34,61 @@
     crateSize: 26,
   };
 
+  // Difficulty changes each level's goal, the pace, and the time limits.
+  //   goal       village tank needed to clear a level
+  //   drain/rain/dirty  how fast the village uses water, how fast drops fall, how often they're polluted
+  //   truckTime/truckLoad  truck timer multiplier and extra cases needed per truck
+  //   leak/lift  how often cases leak and how fast the forklift drives
+  const DIFFICULTY = {
+    easy:   { goal: 80,  drain: 0.7,  rain: 0.85, dirty: 0.7,  truckTime: 1.3, truckLoad: -2, leak: 0.7,  lift: 0.8 },
+    normal: { goal: 100, drain: 1,    rain: 1,    dirty: 1,    truckTime: 1,   truckLoad: 0,  leak: 1,    lift: 1 },
+    hard:   { goal: 120, drain: 1.35, rain: 1.2,  dirty: 1.35, truckTime: 0.8, truckLoad: 2,  leak: 1.35, lift: 1.25 },
+  };
+  let difficulty = 'normal';
+  try { if (DIFFICULTY[localStorage.getItem('flowquest-difficulty')]) difficulty = localStorage.getItem('flowquest-difficulty'); } catch (_) { /* storage unavailable */ }
+  const diff = () => DIFFICULTY[difficulty];
+
+  // Milestones: a badge pops up as the player passes each checkpoint of a level
+  // (the village tank, or the current truck's load)
+  const MILESTONES = [
+    { at: 0.25, key: 'ms25' },
+    { at: 0.5, key: 'ms50' },
+    { at: 0.75, key: 'ms75' },
+  ];
+
+  // Sound effects made for this game (assets/sounds). Browsers only allow audio
+  // after the player taps or presses a key, so they load on the first interaction.
+  const SOUND_NAMES = ['catch', 'hurt', 'pickup', 'filter', 'milestone', 'levelup', 'win', 'lose', 'click'];
+  const sound = { ctx: null, buffers: {}, on: true };
+  try { sound.on = localStorage.getItem('flowquest-sound') !== 'off'; } catch (_) { /* storage unavailable */ }
+  function unlockSound() {
+    if (sound.ctx) {
+      if (sound.ctx.state === 'suspended') sound.ctx.resume();
+      return;
+    }
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    sound.ctx = new AC();
+    SOUND_NAMES.forEach((name) => {
+      fetch(`assets/sounds/${name}.wav`)
+        .then((r) => r.arrayBuffer())
+        .then((data) => new Promise((ok, fail) => sound.ctx.decodeAudioData(data, ok, fail)))
+        .then((buf) => { sound.buffers[name] = buf; })
+        .catch(() => { /* play silently without this one */ });
+    });
+  }
+  window.addEventListener('pointerdown', unlockSound);
+  window.addEventListener('keydown', unlockSound);
+  function sfx(name, volume = 0.6) {
+    if (!sound.on || !sound.ctx || !sound.buffers[name]) return;
+    const src = sound.ctx.createBufferSource();
+    const gain = sound.ctx.createGain();
+    gain.gain.value = volume;
+    src.buffer = sound.buffers[name];
+    src.connect(gain).connect(sound.ctx.destination);
+    src.start();
+  }
+
   // Translations live in i18n.js. tr('key') returns the text in the current language.
   const tr = (key, vars) => window.I18N.t(key, vars);
   // In Arabic the whole game is mirrored so it reads right to left
@@ -61,7 +116,7 @@
     score: $('score'), hearts: $('hearts'), level: $('level'), levelTop: $('levelTop'),
     livestock: $('livestock'), livestockTop: $('livestockTop'), pen: $('pen'),
     herdLabel: $('herdLabel'), herdIcon: $('herdIcon'), progressTitle: $('progressTitle'),
-    carry: $('carry'), carryLabel: $('carryLabel'), carryFill: $('carryFill'), status: $('purifyStatus'),
+    carry: $('carry'), carryLabel: $('carryLabel'), tray: $('tray'), status: $('purifyStatus'),
     steps: [],
     actBtns: [...document.querySelectorAll('[data-control="act"]')],
     toast: $('toast'),
@@ -208,14 +263,16 @@
     }
     renderPen(true);
     renderHearts();
+    ui.tray.innerHTML = '';
+    resetMilestones();
     snapCam = true;
   }
 
   function makeTruck(level, arriving = 1.2) {
-    const time = Math.max(30, 46 - level * 3);
+    const time = Math.round(Math.max(30, 46 - level * 3) * diff().truckTime);
     return {
       load: 0,
-      target: 6 + level * 2,
+      target: 6 + level * 2 + diff().truckLoad,
       time,
       maxTime: time,
       leaving: 0,         // > 0 while driving away
@@ -323,6 +380,44 @@
   });
   $('againBtn').addEventListener('click', () => startRole(mode));
   $('endSwitchBtn').addEventListener('click', openRoleSelect);
+
+  // Difficulty picker on the role screen
+  const diffBtns = [...document.querySelectorAll('.diff')];
+  function renderDifficulty() {
+    diffBtns.forEach((b) => {
+      const on = b.dataset.diff === difficulty;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-checked', String(on));
+    });
+    $('diffDesc').textContent = tr(`${difficulty}Desc`);
+    // The help text says "fill the tank to 100"; show this difficulty's goal instead
+    const goalLine = document.querySelector('[data-i18n-html="hv6"]');
+    if (goalLine) goalLine.innerHTML = tr('hv6').replace('100', String(diff().goal));
+  }
+  diffBtns.forEach((b) => b.addEventListener('click', () => {
+    difficulty = b.dataset.diff;
+    try { localStorage.setItem('flowquest-difficulty', difficulty); } catch (_) { /* storage unavailable */ }
+    renderDifficulty();
+  }));
+
+  // Sound on/off (menu button or the M key)
+  const soundBtn = $('soundBtn');
+  function renderSoundBtn() {
+    soundBtn.textContent = tr(sound.on ? 'soundOn' : 'soundOff');
+    soundBtn.setAttribute('aria-pressed', String(sound.on));
+  }
+  function toggleSound() {
+    sound.on = !sound.on;
+    try { localStorage.setItem('flowquest-sound', sound.on ? 'on' : 'off'); } catch (_) { /* storage unavailable */ }
+    renderSoundBtn();
+    toast(tr(sound.on ? 'soundOn' : 'soundOff'), 1200);
+  }
+  soundBtn.addEventListener('click', toggleSound);
+  window.addEventListener('keydown', (e) => { if (e.key === 'm' || e.key === 'M') toggleSound(); });
+  // A soft click for menu buttons (not the movement controls)
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('button:not(.ctl), .btn')) sfx('click', 0.35);
+  });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden && S.running && !S.over && !S.paused) togglePause(true);
   });
@@ -364,6 +459,7 @@
     S.hearts -= 1;
     p.invuln = 1.6;
     S.shake = 0.25;
+    sfx('hurt', 0.55);
     renderHearts();
     toast(msg, 2400);
     if (S.hearts <= 0) endGame(false);
@@ -383,7 +479,45 @@
     S.factIndex = Math.floor(Math.random() * tr('facts').length);
     $('endFact').textContent = tr('facts')[S.factIndex];
     show(ui.endOverlay, true);
+    sfx(won ? 'win' : 'lose', 0.7);
     if (won) celebrate(220);
+  }
+
+  // ---------- Milestones ----------
+  function levelProgress() {
+    return S.mode === 'village' ? S.water / diff().goal : S.truck.load / S.truck.target;
+  }
+  // Skip checkpoints the player is already past when a level or truck starts
+  function resetMilestones() {
+    S.msHit = MILESTONES.filter((m) => levelProgress() >= m.at).length;
+  }
+  function checkMilestones() {
+    let reached = null;
+    while (S.msHit < MILESTONES.length && levelProgress() >= MILESTONES[S.msHit].at) {
+      reached = MILESTONES[S.msHit];
+      S.msHit += 1;
+    }
+    if (!reached) return;
+    const badge = document.createElement('div');
+    badge.className = 'milestone';
+    badge.textContent = tr(reached.key);
+    stage.appendChild(badge);
+    setTimeout(() => badge.remove(), 2400);
+    sfx('milestone', 0.5);
+  }
+
+  // ---------- Tray: what you're holding, as page elements ----------
+  // A drop or case is added when you collect it and removed when you use or lose it.
+  function addToken(kind) {
+    const el = document.createElement('span');
+    el.className = `token ${kind}`;
+    ui.tray.appendChild(el);
+  }
+  function removeTokens(filter = '') {
+    ui.tray.querySelectorAll(`.token:not(.out)${filter}`).forEach((el) => {
+      el.classList.add('out');
+      setTimeout(() => el.remove(), 350);
+    });
   }
 
   // ---------- Update ----------
@@ -411,6 +545,7 @@
     if (S.mode === 'village') updateVillage(dt);
     else updateWarehouse(dt);
     if (S.over) return;
+    checkMilestones();
 
     if (actQueued) {
       actQueued = false;
@@ -455,10 +590,10 @@
     S.spawnT -= dt;
     if (S.spawnT <= 0) {
       S.spawnT = Math.max(0.32, 1.05 - S.level * 0.13) * rand(0.7, 1.3);
-      const dirtyChance = Math.min(0.5, 0.16 + S.level * 0.06);
+      const dirtyChance = Math.min(0.6, (0.16 + S.level * 0.06) * diff().dirty);
       S.drops.push({
         x: rand(20, W - 20), y: -20,
-        vy: (rand(110, 170) + S.level * 22) * clamp(H / CFG.baseH, 0.75, 1.4),
+        vy: (rand(110, 170) + S.level * 22) * diff().rain * clamp(H / CFG.baseH, 0.75, 1.4),
         dirty: Math.random() < dirtyChance,
         wob: Math.random() * 6,
       });
@@ -481,6 +616,8 @@
         } else if (S.carry < CFG.canCapacity) {
           S.carry += 1;
           S.score += 10;
+          addToken('drop');
+          sfx('catch', 0.45);
           burst(d.x, d.y, '#8fd0f5', 6, 120);
           popup(d.x, d.y, '+10', '#8fd0f5');
           if (S.carry === CFG.canCapacity) toast(tr('canFull'));
@@ -522,12 +659,13 @@
         popup(world.stationX, gy - 120, tr('popWater', { n: gained }), '#8fd0f5');
         burst(world.stationX + 30, gy - 40, '#8fd0f5', 14, 160);
         toast(tr('filtered', { n: gained }));
+        sfx('filter');
       }
     }
     pu.done = Math.max(0, pu.done - dt);
 
     // Village uses water over time
-    S.water -= (0.45 + S.level * 0.25) * dt;
+    S.water -= (0.45 + S.level * 0.25) * diff().drain * dt;
     if (S.water <= 0) {
       S.water = CFG.startWater;
       S.livestock = Math.max(0, S.livestock - 1);
@@ -537,10 +675,10 @@
     }
 
     // Level up
-    if (S.water >= CFG.maxWater) {
+    if (S.water >= diff().goal) {
       S.score += 200 * S.level;
       if (S.level >= CFG.maxLevel) {
-        S.water = CFG.maxWater;
+        S.water = diff().goal;
         endGame(true);
         return;
       }
@@ -550,6 +688,8 @@
       S.hearts = Math.min(CFG.maxHearts, S.hearts + 1);
       renderHearts();
       renderPen(true);
+      resetMilestones();
+      sfx('levelup');
       toast(tr('levelVillage', { n: S.level }), 2800);
       celebrate(60);
       burst(p.x, p.y, '#ffc907', 20, 220);
@@ -570,12 +710,15 @@
       if (S.carry === 0) { toast(tr('canEmpty')); return; }
       S.purify = { active: true, t: 0, amount: S.carry, done: 0 };
       S.carry = 0;
+      removeTokens();
+      sfx('pickup', 0.4);
       return;
     }
     const ti = nearestTrash();
     if (ti >= 0) {
       const t = S.trash.splice(ti, 1)[0];
       S.score += 25;
+      sfx('pickup');
       popup(t.x, world.groundY - 30, tr('popCleanup'), '#9fd39a');
       burst(t.x, world.groundY - 10, '#c9b28a', 8);
       return;
@@ -595,7 +738,7 @@
     if (S.beltT <= 0) {
       const last = S.belt[S.belt.length - 1];
       if (!last || last.x > spacing - cs) {
-        S.belt.push({ x: -cs, bad: Math.random() < Math.min(0.4, 0.12 + S.level * 0.05) });
+        S.belt.push({ x: -cs, bad: Math.random() < Math.min(0.5, (0.12 + S.level * 0.05) * diff().leak) });
       }
       S.beltT = Math.max(0.8, 1.7 - S.level * 0.15) * rand(0.8, 1.2);
     }
@@ -607,7 +750,7 @@
 
     // Forklift patrol
     const L = S.lift;
-    L.x += L.dir * (60 + S.level * 18) * dt;
+    L.x += L.dir * (60 + S.level * 18) * diff().lift * dt;
     if (L.x > world.liftMax) { L.x = world.liftMax; L.dir = -1; }
     if (L.x < world.liftMin) { L.x = world.liftMin; L.dir = 1; }
     L.honk = Math.max(0, L.honk - dt);
@@ -622,6 +765,7 @@
         burst(p.x, p.y + 20, '#c79a62', 8, 160);
         popup(p.x, p.y, tr('popDropped', { n: dropped }), '#e2574c');
         S.stack = [];
+        removeTokens();
       }
       hurt(tr(dropped ? 'forkliftDrop' : 'forkliftHit'));
       p.x = clamp(p.x + (p.x < L.x ? -50 : 50), 14, W - 14);
@@ -655,6 +799,7 @@
           celebrate(60);
         }
         S.truck = makeTruck(S.level);
+        resetMilestones();
       }
     } else {
       T.time -= dt;
@@ -693,6 +838,8 @@
         return;
       }
       S.stack = S.stack.filter((b) => !b);
+      removeTokens('.bad');
+      sfx('pickup');
       S.score += bad * 15;
       popup(world.binX + 20, gy - 90, tr('popRecycled', { n: bad * 15 }), '#9fd39a');
       burst(world.binX, gy - 60, '#9fd39a', 8);
@@ -705,6 +852,8 @@
       if (!head) { toast(tr('waitingCase')); return; }
       S.belt.shift();
       S.stack.push(head.bad);
+      addToken(head.bad ? 'case bad' : 'case');
+      sfx('pickup', 0.5);
       popup(world.beltEnd, gy - 80, tr(head.bad ? 'popLeaking' : 'popCase'), head.bad ? '#e2574c' : '#8fd0f5');
       if (head.bad) toast(tr('leakingHeld'));
       return;
@@ -717,7 +866,9 @@
       const bad = S.stack.filter((b) => b).length;
       const good = S.stack.length - bad;
       S.stack = [];
+      removeTokens();
       if (good) {
+        sfx('filter', 0.5);
         const add = Math.min(good, T.target - T.load);
         T.load += add;
         S.score += add * 20;
@@ -738,6 +889,7 @@
         S.score += bonus;
         S.deliveredFlash = 1.6;
         renderPen(true);
+        sfx('levelup');
         toast(tr('truckFull', { n: bonus }), 2600);
         burst(world.truckBack + 60, gy - 80, '#ffc907', 18, 220);
       }
@@ -748,6 +900,7 @@
     if (si >= 0) {
       const s = S.spills.splice(si, 1)[0];
       S.score += 10;
+      sfx('pickup');
       popup(s.x, gy - 30, tr('popMopped'), '#9fd39a');
       burst(s.x, gy - 4, '#bfe6ff', 8, 100);
       return;
@@ -826,11 +979,10 @@
   }
 
   function syncVillageUI() {
-    setBar(S.water, CFG.maxWater, S.water < 15);
+    setBar(S.water, diff().goal, S.water < 15);
     setText(ui.livestock, 'herd', String(S.livestock));
     setText(ui.livestockTop, 'herdTop', String(S.livestock));
     setText(ui.carry, 'carry', `${S.carry}/${CFG.canCapacity}`);
-    if (cache.carryW !== S.carry) { cache.carryW = S.carry; ui.carryFill.style.width = (S.carry / CFG.canCapacity) * 100 + '%'; }
 
     const pu = S.purify;
     let stage = 0;
@@ -857,7 +1009,6 @@
     setText(ui.livestockTop, 'herdTop', String(S.trucksSent));
     const n = S.stack.length;
     setText(ui.carry, 'carry', `${n}/${CFG.carryMax}`);
-    if (cache.carryW !== n) { cache.carryW = n; ui.carryFill.style.width = (n / CFG.carryMax) * 100 + '%'; }
 
     // 1 = waiting on belt, 2 = carrying, 3 = some cases loaded, 4 = truck delivered
     let stage = 1;
@@ -888,12 +1039,12 @@
   // =========================================================
   //  ART — flat illustrated style with soft light and depth
   // =========================================================
-  // Arabic-script languages get the Cairo font; others use Inter, and the
-  // browser fills in system fonts for scripts Inter doesn't cover (Hindi, Chinese…)
+  // Arabic-script languages get the Cairo font; others use Montserrat (the closest
+  // free match to charity: water's Proxima Nova), with system fonts for other scripts
   const ARABIC_SCRIPT = ['ar', 'fa', 'ur'];
   const fontFor = () => (ARABIC_SCRIPT.includes(window.I18N.lang)
     ? '"Cairo", "Segoe UI", Tahoma, sans-serif'
-    : 'Inter, "Segoe UI", "Noto Sans", system-ui, sans-serif');
+    : 'Montserrat, "Segoe UI", "Noto Sans", system-ui, sans-serif');
 
   function rr(x, y, w, h, r) {
     ctx.beginPath();
@@ -2390,6 +2541,8 @@
     applyModeText();
     for (const k in cache) delete cache[k];
     renderPen(true);
+    renderDifficulty();
+    renderSoundBtn();
     // refresh an open end screen in the new language
     if (S.over) {
       const village = S.mode === 'village';
@@ -2399,6 +2552,8 @@
     }
   });
   window.I18N.init();
+  renderDifficulty();
+  renderSoundBtn();
 
   // ---------- Boot ----------
   window.addEventListener('resize', resize);

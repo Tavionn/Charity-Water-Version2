@@ -165,6 +165,23 @@ I18N.register('ha', {
   popLeakPenalty: '−{n} zuba',
   popDropped: '−{n} akwatuna',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Matsayin wahala',
+  easy: 'Mai sauƙi',
+  normal: 'Matsakaici',
+  hard: 'Mai wuya',
+  easyDesc: 'Ƙananan manufofi, tafiya a hankali da ƙarin lokaci.',
+  normalDesc: 'Ƙalubalen da aka saba.',
+  hardDesc: 'Manyan manufofi, sauri da ƙarancin lokaci.',
+  ms25: 'Kashi ɗaya cikin huɗu ya cika!',
+  ms50: 'Rabin hanya!',
+  ms75: 'Kusan an kai, ci gaba!',
+  soundOn: 'Sauti: a kunne',
+  soundOff: 'Sauti: a kashe',
+  footerNote: 'Kowane digo yana da muhimmanci. Taimaka a kai ruwa mai tsabta ga mabuƙata.',
+  visitSite: 'Ziyarci charity: water',
+  donate: 'Ba da gudummawa',
+
   facts: [
     'Kashi 100% na gudummawar jama’a ga charity: water yana zuwa kai tsaye ga ayyukan ruwa mai tsabta.',
     'Miliyoyin mutane a duniya har yanzu suna rayuwa ba tare da samun ruwan sha mai tsabta ba.',

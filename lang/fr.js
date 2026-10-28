@@ -165,6 +165,23 @@ I18N.register('fr', {
   popLeakPenalty: '−{n} fuite',
   popDropped: '−{n} caisse(s)',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Difficulté',
+  easy: 'Facile',
+  normal: 'Normal',
+  hard: 'Difficile',
+  easyDesc: 'Objectifs plus petits, rythme plus lent et plus de temps.',
+  normalDesc: 'Le défi standard.',
+  hardDesc: 'Objectifs plus grands, rythme plus rapide et moins de temps.',
+  ms25: 'Un quart du chemin !',
+  ms50: 'À mi-chemin !',
+  ms75: 'Presque arrivé, continue !',
+  soundOn: 'Son : activé',
+  soundOff: 'Son : désactivé',
+  footerNote: 'Chaque goutte compte. Aidez à apporter de l’eau potable à ceux qui en ont besoin.',
+  visitSite: 'Visiter charity: water',
+  donate: 'Faire un don',
+
   facts: [
     '100 % des dons publics à charity: water financent directement des projets d’eau potable.',
     'Des millions de personnes dans le monde vivent encore sans accès à l’eau potable.',

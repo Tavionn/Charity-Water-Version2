@@ -165,6 +165,23 @@ I18N.register('de', {
   popLeakPenalty: '−{n} undicht',
   popDropped: '−{n} Kiste(n)',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Schwierigkeit',
+  easy: 'Leicht',
+  normal: 'Normal',
+  hard: 'Schwer',
+  easyDesc: 'Kleinere Ziele, langsameres Tempo und mehr Zeit.',
+  normalDesc: 'Die normale Herausforderung.',
+  hardDesc: 'Größere Ziele, schnelleres Tempo und weniger Zeit.',
+  ms25: 'Ein Viertel geschafft!',
+  ms50: 'Halbzeit!',
+  ms75: 'Fast geschafft, weiter so!',
+  soundOn: 'Ton: an',
+  soundOff: 'Ton: aus',
+  footerNote: 'Jeder Tropfen zählt. Hilf mit, sauberes Wasser zu Menschen in Not zu bringen.',
+  visitSite: 'charity: water besuchen',
+  donate: 'Spenden',
+
   facts: [
     '100 % der öffentlichen Spenden an charity: water fließen direkt in Projekte für sauberes Wasser.',
     'Millionen Menschen weltweit leben noch immer ohne Zugang zu sauberem Trinkwasser.',

@@ -165,6 +165,23 @@ I18N.register('ko', {
   popLeakPenalty: '누수 −{n}',
   popDropped: '상자 −{n}',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: '난이도',
+  easy: '쉬움',
+  normal: '보통',
+  hard: '어려움',
+  easyDesc: '목표가 작고, 속도가 느리며, 시간이 더 많습니다.',
+  normalDesc: '기본 난이도입니다.',
+  hardDesc: '목표가 크고, 속도가 빠르며, 시간이 적습니다.',
+  ms25: '4분의 1 달성!',
+  ms50: '절반 왔어요!',
+  ms75: '거의 다 왔어요, 힘내세요!',
+  soundOn: '소리: 켜짐',
+  soundOff: '소리: 꺼짐',
+  footerNote: '모든 물방울이 소중합니다. 필요한 사람들에게 깨끗한 물을 전해 주세요.',
+  visitSite: 'charity: water 방문하기',
+  donate: '기부하기',
+
   facts: [
     'charity: water에 들어오는 일반 기부금은 100% 깨끗한 물 사업에 직접 쓰여요.',
     '전 세계 수백만 명이 아직도 깨끗한 식수를 구하지 못한 채 살고 있어요.',

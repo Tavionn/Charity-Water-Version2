@@ -165,6 +165,23 @@ I18N.register('zh', {
   popLeakPenalty: '−{n} 漏水',
   popDropped: '−{n} 箱',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: '难度',
+  easy: '简单',
+  normal: '普通',
+  hard: '困难',
+  easyDesc: '目标更小、节奏更慢、时间更多。',
+  normalDesc: '标准挑战。',
+  hardDesc: '目标更大、节奏更快、时间更少。',
+  ms25: '已完成四分之一！',
+  ms50: '已经过半！',
+  ms75: '快到了，加油！',
+  soundOn: '声音：开',
+  soundOff: '声音：关',
+  footerNote: '每一滴水都很重要。帮助把干净的水送到有需要的人身边。',
+  visitSite: '访问 charity: water',
+  donate: '捐款',
+
   facts: [
     '捐给 charity: water 的公众善款 100% 直接用于清洁用水项目。',
     '全世界仍有数以百万计的人无法获得干净的饮用水。',

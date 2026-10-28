@@ -165,6 +165,23 @@ I18N.register('tr', {
   popLeakPenalty: '−{n} sızıntı',
   popDropped: '−{n} koli',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Zorluk',
+  easy: 'Kolay',
+  normal: 'Normal',
+  hard: 'Zor',
+  easyDesc: 'Daha küçük hedefler, daha yavaş tempo ve daha fazla süre.',
+  normalDesc: 'Standart zorluk.',
+  hardDesc: 'Daha büyük hedefler, daha hızlı tempo ve daha az süre.',
+  ms25: 'Yolun dörtte biri tamam!',
+  ms50: 'Yarı yoldasın!',
+  ms75: 'Az kaldı, devam et!',
+  soundOn: 'Ses: açık',
+  soundOff: 'Ses: kapalı',
+  footerNote: 'Her damla önemli. İhtiyacı olanlara temiz su ulaştırmaya yardım et.',
+  visitSite: 'charity: water’ı ziyaret et',
+  donate: 'Bağış yap',
+
   facts: [
     'charity: water’a yapılan kamuya açık bağışların %100’ü doğrudan temiz su projelerine gider.',
     'Dünyada milyonlarca insan hâlâ temiz içme suyuna erişemeden yaşıyor.',

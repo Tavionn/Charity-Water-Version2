@@ -168,6 +168,23 @@ I18N.register('es', {
   popLeakPenalty: '−{n} fuga',
   popDropped: '−{n} cajas',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Dificultad',
+  easy: 'Fácil',
+  normal: 'Normal',
+  hard: 'Difícil',
+  easyDesc: 'Metas más pequeñas, ritmo más lento y más tiempo.',
+  normalDesc: 'El desafío estándar.',
+  hardDesc: 'Metas más grandes, ritmo más rápido y menos tiempo.',
+  ms25: '¡Ya llevas un cuarto!',
+  ms50: '¡Vas por la mitad!',
+  ms75: '¡Ya casi, sigue así!',
+  soundOn: 'Sonido: activado',
+  soundOff: 'Sonido: desactivado',
+  footerNote: 'Cada gota cuenta. Ayuda a llevar agua limpia a quienes la necesitan.',
+  visitSite: 'Visita charity: water',
+  donate: 'Donar',
+
   facts: [
     'El 100 % de las donaciones públicas a charity: water financia directamente proyectos de agua limpia.',
     'Millones de personas en el mundo todavía viven sin acceso a agua potable limpia.',

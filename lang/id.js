@@ -165,6 +165,23 @@ I18N.register('id', {
   popLeakPenalty: '−{n} bocor',
   popDropped: '−{n} dus',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Tingkat kesulitan',
+  easy: 'Mudah',
+  normal: 'Normal',
+  hard: 'Sulit',
+  easyDesc: 'Target lebih kecil, tempo lebih lambat, dan waktu lebih banyak.',
+  normalDesc: 'Tantangan standar.',
+  hardDesc: 'Target lebih besar, tempo lebih cepat, dan waktu lebih sedikit.',
+  ms25: 'Seperempat jalan!',
+  ms50: 'Setengah jalan!',
+  ms75: 'Hampir sampai, terus!',
+  soundOn: 'Suara: aktif',
+  soundOff: 'Suara: mati',
+  footerNote: 'Setiap tetes berarti. Bantu bawa air bersih kepada yang membutuhkan.',
+  visitSite: 'Kunjungi charity: water',
+  donate: 'Donasi',
+
   facts: [
     '100% donasi publik untuk charity: water langsung mendanai proyek air bersih.',
     'Jutaan orang di dunia masih hidup tanpa akses ke air minum yang bersih.',

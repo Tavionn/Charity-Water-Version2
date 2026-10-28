@@ -234,6 +234,23 @@
       popLeakPenalty: '−{n} leaking',
       popDropped: '−{n} case(s)',
 
+      // Project 6: difficulty, milestones, sound, footer
+      difficulty: 'Difficulty',
+      easy: 'Easy',
+      normal: 'Normal',
+      hard: 'Hard',
+      easyDesc: 'Smaller goals, a slower pace, and more time.',
+      normalDesc: 'The standard challenge.',
+      hardDesc: 'Bigger goals, a faster pace, and less time.',
+      ms25: 'A quarter of the way there!',
+      ms50: 'Halfway there!',
+      ms75: 'Almost there, keep going!',
+      soundOn: 'Sound: On',
+      soundOff: 'Sound: Off',
+      footerNote: 'Every drop counts. Help bring clean water to people in need.',
+      visitSite: 'Visit charity: water',
+      donate: 'Donate',
+
       facts: [
         '100% of public donations to charity: water go directly to fund clean water projects.',
         'Millions of people around the world still live without access to clean drinking water.',

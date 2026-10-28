@@ -165,6 +165,23 @@ I18N.register('ja', {
   popLeakPenalty: '水もれ −{n}',
   popDropped: 'ケース −{n}',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: '難易度',
+  easy: 'かんたん',
+  normal: 'ふつう',
+  hard: 'むずかしい',
+  easyDesc: '目標が小さく、ペースがゆっくりで、時間に余裕があります。',
+  normalDesc: '標準の難しさです。',
+  hardDesc: '目標が大きく、ペースが速く、時間が短くなります。',
+  ms25: '4分の1達成！',
+  ms50: '半分まで来ました！',
+  ms75: 'あと少し、がんばって！',
+  soundOn: 'サウンド：オン',
+  soundOff: 'サウンド：オフ',
+  footerNote: '一滴一滴が大切です。必要な人にきれいな水を届ける手助けを。',
+  visitSite: 'charity: water を見る',
+  donate: '寄付する',
+
   facts: [
     'charity: water への一般からの寄付は 100% がきれいな水のプロジェクトに直接使われます。',
     '世界では今も何百万もの人が、きれいな飲み水を手に入れられずに暮らしています。',

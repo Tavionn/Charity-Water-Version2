@@ -165,6 +165,23 @@ I18N.register('it', {
   popLeakPenalty: '−{n} perdita',
   popDropped: '−{n} casse',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Difficoltà',
+  easy: 'Facile',
+  normal: 'Normale',
+  hard: 'Difficile',
+  easyDesc: 'Obiettivi più piccoli, ritmo più lento e più tempo.',
+  normalDesc: 'La sfida standard.',
+  hardDesc: 'Obiettivi più grandi, ritmo più veloce e meno tempo.',
+  ms25: 'Un quarto del percorso!',
+  ms50: 'A metà strada!',
+  ms75: 'Quasi fatto, continua così!',
+  soundOn: 'Audio: attivo',
+  soundOff: 'Audio: disattivato',
+  footerNote: 'Ogni goccia conta. Aiuta a portare acqua pulita a chi ne ha bisogno.',
+  visitSite: 'Visita charity: water',
+  donate: 'Dona',
+
   facts: [
     'Il 100% delle donazioni pubbliche a charity: water finanzia direttamente progetti per l’acqua pulita.',
     'Milioni di persone nel mondo vivono ancora senza accesso all’acqua potabile pulita.',

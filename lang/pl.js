@@ -165,6 +165,23 @@ I18N.register('pl', {
   popLeakPenalty: '−{n} wyciek',
   popDropped: '−{n} skrz.',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Poziom trudności',
+  easy: 'Łatwy',
+  normal: 'Normalny',
+  hard: 'Trudny',
+  easyDesc: 'Mniejsze cele, wolniejsze tempo i więcej czasu.',
+  normalDesc: 'Standardowe wyzwanie.',
+  hardDesc: 'Większe cele, szybsze tempo i mniej czasu.',
+  ms25: 'Już ćwierć drogi!',
+  ms50: 'Połowa drogi!',
+  ms75: 'Prawie u celu, tak trzymaj!',
+  soundOn: 'Dźwięk: wł.',
+  soundOff: 'Dźwięk: wył.',
+  footerNote: 'Każda kropla się liczy. Pomóż dostarczyć czystą wodę potrzebującym.',
+  visitSite: 'Odwiedź charity: water',
+  donate: 'Przekaż darowiznę',
+
   facts: [
     '100% darowizn publicznych dla charity: water trafia bezpośrednio na projekty czystej wody.',
     'Miliony ludzi na świecie wciąż żyją bez dostępu do czystej wody pitnej.',

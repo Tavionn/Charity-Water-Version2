@@ -6,7 +6,19 @@ A browser game prototype built with HTML, CSS, and JavaScript for the charity: w
 
 ## Play
 
-Open `index.html` in any web browser. No installs or build steps are needed.
+Play it live at **https://tavionn.github.io/Charity-Water-Version2/**, or open `index.html` in any web browser. No installs or build steps are needed.
+
+## Difficulty
+
+Pick **Easy**, **Normal**, or **Hard** on the role screen. Your choice is remembered.
+
+| | Easy | Normal | Hard |
+|---|---|---|---|
+| Village tank goal per level | 80 | 100 | 120 |
+| Village water use, rain speed, polluted drops | slower / fewer | standard | faster / more |
+| Truck timer | 30% longer | standard | 20% shorter |
+| Cases per truck | 2 fewer | standard | 2 more |
+| Leaking cases, forklift speed | fewer / slower | standard | more / faster |
 
 ## Two roles
 
@@ -16,7 +28,7 @@ Open `index.html` in any web browser. No installs or build steps are needed.
 - Take your can to the biosand filter on the bridge to purify it and fill the village tank.
 - Pick up litter for a cleanup bonus.
 - Stay out of the Restricted Area (−25 points and a heart).
-- Fill the tank to 100 to level up. Clear level 5 to win.
+- Fill the tank to its goal (80, 100, or 120 depending on difficulty) to level up. Clear level 5 to win.
 
 **Warehouse Volunteer:** packing water for delivery
 - Grab cases from the conveyor belt (carry up to 3).
@@ -69,6 +81,15 @@ The translations were written with AI help. Ideally a native speaker should revi
 - **Game reset:** a Reset button in the header restarts the current game at any time.
 - **Celebrate wins:** a confetti burst plays when you win, with smaller bursts on level-ups.
 
+## Final version (Project 6)
+
+- **Difficulty modes:** Easy, Normal, and Hard change each level's goal, the pace, and the time limits (see the table above).
+- **Page elements added and removed as you play:** the side panel shows what you're holding. Each clean drop you catch adds a drop icon to your jerry can tray, and the icons fly out when you pour them into the filter. In the warehouse, each case you grab adds a case icon (red if it's leaking), which is removed when you load it, recycle it, or the forklift knocks it away. Milestone badges are also added to the page and remove themselves.
+- **charity: water links:** a footer links to [charitywater.org](https://www.charitywater.org) and the [donation page](https://www.charitywater.org/donate). The pause menu has both links too.
+- **Brand font:** charity: water's brand font is Proxima Nova, which isn't free to use. The game uses **Montserrat**, its closest free match, for all text, including the labels drawn in the game scene.
+- **Sound effects (LevelUp):** sounds for catching water, getting hurt, picking things up, the filter, milestones, level-ups, winning, losing, and button clicks. They were made for this game with a small script (no outside clips), so there are no license issues. Turn sound on or off in the pause menu or with the **M** key.
+- **Milestones (LevelUp):** an array of milestone messages ("A quarter of the way there!", "Halfway there!", "Almost there, keep going!") pops up at 25%, 50%, and 75% of each level's village tank, or of each truck's load.
+
 ## Files
 
 - `index.html`: page layout (header, game area, control panels, menus)
@@ -76,5 +97,6 @@ The translations were written with AI help. Ideally a native speaker should revi
 - `script.js`: game logic and canvas drawing
 - `i18n.js`: language list, English text, reading-direction detection, and language switching
 - `lang/*.js`: one translation file per language
+- `assets/sounds/*.wav`: sound effects
 
 Learn more about clean water at [charitywater.org](https://www.charitywater.org).

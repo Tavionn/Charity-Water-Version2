@@ -165,6 +165,23 @@ I18N.register('am', {
   popLeakPenalty: '−{n} ፍሳሽ',
   popDropped: '−{n} ሳጥኖች',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'የችግር ደረጃ',
+  easy: 'ቀላል',
+  normal: 'መደበኛ',
+  hard: 'ከባድ',
+  easyDesc: 'ትናንሽ ግቦች፣ ዝግ ያለ ፍጥነት እና ተጨማሪ ጊዜ።',
+  normalDesc: 'መደበኛው ፈተና።',
+  hardDesc: 'ትልልቅ ግቦች፣ ፈጣን ፍጥነት እና ያነሰ ጊዜ።',
+  ms25: 'ሩብ መንገድ ደርሰዋል!',
+  ms50: 'ግማሽ መንገድ!',
+  ms75: 'ሊደርሱ ነው፣ ይቀጥሉ!',
+  soundOn: 'ድምፅ፦ በርቷል',
+  soundOff: 'ድምፅ፦ ጠፍቷል',
+  footerNote: 'እያንዳንዱ ጠብታ ዋጋ አለው። ንጹሕ ውሃ ለሚያስፈልጋቸው እንዲደርስ ያግዙ።',
+  visitSite: 'charity: waterን ይጎብኙ',
+  donate: 'ይለግሱ',
+
   facts: [
     'ለcharity: water ከሕዝብ የሚሰጠው ልገሳ 100% በቀጥታ ለንጹሕ ውሃ ፕሮጀክቶች ይውላል።',
     'በዓለም ዙሪያ በሚሊዮን የሚቆጠሩ ሰዎች አሁንም ንጹሕ የመጠጥ ውሃ ሳያገኙ ይኖራሉ።',

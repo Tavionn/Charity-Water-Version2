@@ -165,6 +165,23 @@ I18N.register('nl', {
   popLeakPenalty: '−{n} lek',
   popDropped: '−{n} dozen',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Moeilijkheid',
+  easy: 'Makkelijk',
+  normal: 'Normaal',
+  hard: 'Moeilijk',
+  easyDesc: 'Kleinere doelen, een rustiger tempo en meer tijd.',
+  normalDesc: 'De standaarduitdaging.',
+  hardDesc: 'Grotere doelen, een hoger tempo en minder tijd.',
+  ms25: 'Een kwart van de weg!',
+  ms50: 'Halverwege!',
+  ms75: 'Bijna daar, ga zo door!',
+  soundOn: 'Geluid: aan',
+  soundOff: 'Geluid: uit',
+  footerNote: 'Elke druppel telt. Help schoon water te brengen naar mensen die het nodig hebben.',
+  visitSite: 'Bezoek charity: water',
+  donate: 'Doneren',
+
   facts: [
     '100% van de publieke donaties aan charity: water gaat rechtstreeks naar projecten voor schoon water.',
     'Miljoenen mensen wereldwijd leven nog steeds zonder toegang tot schoon drinkwater.',

@@ -165,6 +165,23 @@ I18N.register('he', {
   popLeakPenalty: '‎−{n} דליפה',
   popDropped: '‎−{n} ארגזים',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'רמת קושי',
+  easy: 'קל',
+  normal: 'רגיל',
+  hard: 'קשה',
+  easyDesc: 'יעדים קטנים יותר, קצב איטי יותר ויותר זמן.',
+  normalDesc: 'האתגר הרגיל.',
+  hardDesc: 'יעדים גדולים יותר, קצב מהיר יותר ופחות זמן.',
+  ms25: 'רבע מהדרך!',
+  ms50: 'חצי הדרך!',
+  ms75: 'כמעט שם, תמשיכו!',
+  soundOn: 'צליל: מופעל',
+  soundOff: 'צליל: כבוי',
+  footerNote: 'כל טיפה חשובה. עזרו להביא מים נקיים לאנשים שזקוקים להם.',
+  visitSite: 'בקרו ב־charity: water',
+  donate: 'תרמו',
+
   facts: [
     '100% מהתרומות מהציבור ל-charity: water מממנות ישירות פרויקטים של מים נקיים.',
     'מיליוני אנשים בעולם עדיין חיים בלי גישה למי שתייה נקיים.',

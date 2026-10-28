@@ -10,9 +10,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Fonts load in the background so the page shows right away with system fonts -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" /></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" /></noscript>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body data-mode="village">
@@ -80,6 +80,16 @@
           <p class="eyebrow" data-i18n="eyebrow">A charity: water story</p>
           <h2 class="title">Flow Quest</h2>
           <p class="lead" data-i18n="lead">Two sides of one mission: getting clean water to the people who need it. Choose your role.</p>
+          <!-- Difficulty changes each level's goal, the pace, and the time limits -->
+          <div class="difficulty">
+            <span class="diff-label" id="diffLabel" data-i18n="difficulty">Difficulty</span>
+            <div class="diff-options" role="radiogroup" aria-labelledby="diffLabel">
+              <button type="button" class="diff" role="radio" data-diff="easy" data-i18n="easy">Easy</button>
+              <button type="button" class="diff" role="radio" data-diff="normal" data-i18n="normal">Normal</button>
+              <button type="button" class="diff" role="radio" data-diff="hard" data-i18n="hard">Hard</button>
+            </div>
+            <p class="diff-desc" id="diffDesc"></p>
+          </div>
           <div class="roles">
             <button class="role village" data-mode="village">
               <span class="role-top">
@@ -144,7 +154,9 @@
             <button class="btn" id="helpBtn" data-i18n="howTo">How to Play</button>
             <button class="btn" id="restartBtn" data-i18n="restart">Restart</button>
             <button class="btn" id="switchBtn" data-i18n="switchRole">Switch Role</button>
+            <button class="btn" id="soundBtn" aria-pressed="true">Sound: On</button>
             <a class="btn ghost" href="https://www.charitywater.org" target="_blank" rel="noopener" data-i18n="learnMore">Learn about charity: water</a>
+            <a class="btn ghost" href="https://www.charitywater.org/donate" target="_blank" rel="noopener" data-i18n="donate">Donate</a>
           </div>
         </div>
       </div>
@@ -226,7 +238,8 @@
         </div>
         <div class="can-row">
           <span class="can-label"><span id="carryLabel">Jerry can</span> <b id="carry">0/10</b></span>
-          <div class="mini-bar"><div id="carryFill"></div></div>
+          <!-- One icon per drop or case you're holding: added when you collect, removed when you use it -->
+          <div class="tray" id="tray" aria-hidden="true"></div>
         </div>
         <p class="status" id="purifyStatus">Catch clean drops to fill your can.</p>
       </section>
@@ -246,6 +259,15 @@
         <button class="ctl" data-control="right" aria-label="Move right" data-i18n-aria="moveRight">→</button>
         <button class="ctl" data-control="up" aria-label="Jump" data-i18n-aria="jump">↑</button>
         <button class="ctl act" data-control="act" aria-label="Interact" data-i18n-aria="interact"><svg><use href="#i-hand"/></svg></button>
+      </nav>
+    </footer>
+
+    <!-- ===== SITE FOOTER: links to charity: water ===== -->
+    <footer class="site-footer">
+      <span class="footer-note" data-i18n="footerNote">Every drop counts. Help bring clean water to people in need.</span>
+      <nav class="footer-links">
+        <a href="https://www.charitywater.org" target="_blank" rel="noopener" data-i18n="visitSite">Visit charity: water</a>
+        <a class="donate" href="https://www.charitywater.org/donate" target="_blank" rel="noopener" data-i18n="donate">Donate</a>
       </nav>
     </footer>
   </div>

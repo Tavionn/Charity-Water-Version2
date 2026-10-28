@@ -165,6 +165,23 @@ I18N.register('fil', {
   popLeakPenalty: '−{n} tagas',
   popDropped: '−{n} kahon',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Hirap',
+  easy: 'Madali',
+  normal: 'Karaniwan',
+  hard: 'Mahirap',
+  easyDesc: 'Mas maliliit na layunin, mas mabagal na takbo, at mas maraming oras.',
+  normalDesc: 'Ang karaniwang hamon.',
+  hardDesc: 'Mas malalaking layunin, mas mabilis na takbo, at mas kaunting oras.',
+  ms25: 'Isang-kapat na ng daan!',
+  ms50: 'Kalahati na!',
+  ms75: 'Malapit na, tuloy lang!',
+  soundOn: 'Tunog: bukas',
+  soundOff: 'Tunog: sarado',
+  footerNote: 'Mahalaga ang bawat patak. Tumulong na maghatid ng malinis na tubig sa nangangailangan.',
+  visitSite: 'Bisitahin ang charity: water',
+  donate: 'Mag-donate',
+
   facts: [
     'Ang 100% ng mga donasyon ng publiko sa charity: water ay direktang napupunta sa mga proyekto ng malinis na tubig.',
     'Milyon-milyong tao sa mundo ang nabubuhay pa rin nang walang malinis na tubig na maiinom.',

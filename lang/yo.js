@@ -165,6 +165,23 @@ I18N.register('yo', {
   popLeakPenalty: '−{n} jíjò',
   popDropped: '−{n} àpótí',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Ìpele ìṣòro',
+  easy: 'Rọrùn',
+  normal: 'Àárín',
+  hard: 'Le',
+  easyDesc: 'Àfojúsùn kékeré, ìyára díẹ̀, àti àkókò púpọ̀.',
+  normalDesc: 'Ìpèníjà déédéé.',
+  hardDesc: 'Àfojúsùn ńlá, ìyára púpọ̀, àti àkókò díẹ̀.',
+  ms25: 'Ìdá mẹ́rin ọ̀nà ti parí!',
+  ms50: 'Ìdajì ọ̀nà!',
+  ms75: 'Ó kù díẹ̀, máa bá a lọ!',
+  soundOn: 'Ohùn: tàn',
+  soundOff: 'Ohùn: pa',
+  footerNote: 'Gbogbo ẹ̀kán omi ṣe pàtàkì. Ràn wá lọ́wọ́ láti mú omi mímọ́ dé ọ̀dọ̀ àwọn tó nílò rẹ̀.',
+  visitSite: 'Ṣèbẹ̀wò sí charity: water',
+  donate: 'Ṣètọrẹ',
+
   facts: [
     'Ìdá 100% ti ẹ̀bùn àwọn aráàlú sí charity: water ń lọ tààrà sí iṣẹ́ omi mímọ́.',
     'Mílíọ̀nù ènìyàn kárí ayé ṣì ń gbé láìní omi mímu tó mọ́.',

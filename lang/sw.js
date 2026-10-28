@@ -165,6 +165,23 @@ I18N.register('sw', {
   popLeakPenalty: '−{n} kuvuja',
   popDropped: '−{n} masanduku',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Ugumu',
+  easy: 'Rahisi',
+  normal: 'Kawaida',
+  hard: 'Ngumu',
+  easyDesc: 'Malengo madogo, kasi ndogo na muda zaidi.',
+  normalDesc: 'Changamoto ya kawaida.',
+  hardDesc: 'Malengo makubwa, kasi zaidi na muda mfupi.',
+  ms25: 'Robo ya safari!',
+  ms50: 'Nusu ya safari!',
+  ms75: 'Karibu kufika, endelea!',
+  soundOn: 'Sauti: imewashwa',
+  soundOff: 'Sauti: imezimwa',
+  footerNote: 'Kila tone lina thamani. Saidia kufikisha maji safi kwa wanaohitaji.',
+  visitSite: 'Tembelea charity: water',
+  donate: 'Changia',
+
   facts: [
     'Asilimia 100 ya michango ya umma kwa charity: water inafadhili moja kwa moja miradi ya maji safi.',
     'Mamilioni ya watu duniani bado wanaishi bila kupata maji safi ya kunywa.',

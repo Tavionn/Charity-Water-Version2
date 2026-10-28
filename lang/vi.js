@@ -165,6 +165,23 @@ I18N.register('vi', {
   popLeakPenalty: '−{n} rò rỉ',
   popDropped: '−{n} thùng',
 
+  // Project 6: difficulty, milestones, sound, footer
+  difficulty: 'Độ khó',
+  easy: 'Dễ',
+  normal: 'Thường',
+  hard: 'Khó',
+  easyDesc: 'Mục tiêu nhỏ hơn, nhịp chậm hơn và nhiều thời gian hơn.',
+  normalDesc: 'Thử thách tiêu chuẩn.',
+  hardDesc: 'Mục tiêu lớn hơn, nhịp nhanh hơn và ít thời gian hơn.',
+  ms25: 'Đã đi được một phần tư!',
+  ms50: 'Đã được nửa đường!',
+  ms75: 'Sắp tới rồi, cố lên!',
+  soundOn: 'Âm thanh: bật',
+  soundOff: 'Âm thanh: tắt',
+  footerNote: 'Mỗi giọt nước đều quý. Hãy giúp mang nước sạch đến những người cần.',
+  visitSite: 'Truy cập charity: water',
+  donate: 'Quyên góp',
+
   facts: [
     '100% tiền quyên góp công khai cho charity: water được dùng trực tiếp cho các dự án nước sạch.',
     'Hàng triệu người trên thế giới vẫn đang sống mà không có nước uống sạch.',

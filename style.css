@@ -17,7 +17,7 @@
   --green: #6fbf73;
   --sand: #c9a46a;
   --radius: 12px;
-  --head: "Outfit", "Segoe UI", system-ui, sans-serif;
+  --head: "Montserrat", "Segoe UI", system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -27,7 +27,7 @@ html, body {
   height: 100%;
   background: #0a0b0d;
   color: var(--text);
-  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-family: "Montserrat", "Segoe UI", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   /* Quick double taps on buttons shouldn't zoom the page; pinch-zoom still works */
@@ -437,8 +437,20 @@ body.touch .keys-touch { display: block; }
 .can-row { display: flex; align-items: center; gap: 12px; font-size: 0.82rem; color: var(--muted); }
 .can-label { white-space: nowrap; }
 .can-label b { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
-.mini-bar { flex: 1; max-width: 240px; height: 6px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
-.mini-bar div { height: 100%; width: 0; background: var(--yellow); transition: width 0.2s; }
+/* What you're holding: one icon per drop or case, added and removed as you play */
+.tray { flex: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; min-height: 18px; }
+.token { flex: none; animation: token-in 0.25s ease; }
+.token.drop {
+  width: 12px;
+  height: 16px;
+  background: #8fd0f5;
+  clip-path: path("M6 0C6 0 12 7.5 12 10.5A6 6 0 0 1 0 10.5C0 7.5 6 0 6 0Z");
+}
+.token.case { width: 16px; height: 14px; border-radius: 2px; background: linear-gradient(#c79a62 0 34%, #8fd0f5 34% 66%, #c79a62 66%); }
+.token.case.bad { background: linear-gradient(#c79a62 0 34%, #e2574c 34% 66%, #c79a62 66%); box-shadow: 0 0 0 1.5px #e2574c; }
+.token.out { animation: token-out 0.35s ease forwards; }
+@keyframes token-in { from { transform: scale(0); opacity: 0; } }
+@keyframes token-out { to { transform: translateY(-10px) scale(0.4); opacity: 0; } }
 .status { margin: 0; font-size: 0.8rem; color: #cfcac2; min-height: 1.2em; }
 
 .herd { display: flex; flex-direction: column; gap: 10px; }
@@ -565,8 +577,8 @@ body[data-mode="warehouse"] .steps[data-mode="warehouse"] { display: flex; }
 
 /* ===== Arabic / right-to-left ===== */
 /* Fonts for other scripts come from the system (Segoe UI, Noto, etc.) */
-html:not([lang="en"]) body { font-family: "Inter", "Segoe UI", "Noto Sans", system-ui, sans-serif; }
-html:not([lang="en"]) { --head: "Outfit", "Segoe UI", "Noto Sans", system-ui, sans-serif; }
+html:not([lang="en"]) body { font-family: "Montserrat", "Segoe UI", "Noto Sans", system-ui, sans-serif; }
+html:not([lang="en"]) { --head: "Montserrat", "Segoe UI", "Noto Sans", system-ui, sans-serif; }
 /* Arabic, Persian and Urdu share the Arabic script and the Cairo font */
 :is(html[lang="ar"], html[lang="fa"], html[lang="ur"]) :is(body, button, select) { font-family: "Cairo", "Segoe UI", Tahoma, sans-serif; }
 :is(html[lang="ar"], html[lang="fa"], html[lang="ur"]) { --head: "Cairo", "Segoe UI", Tahoma, sans-serif; }
@@ -588,9 +600,85 @@ kbd, .bar-label b, .stat b, .can-label b { unicode-bidi: isolate; direction: ltr
   .stats { gap: 8px 12px; }
 }
 
+/* ===== Difficulty picker ===== */
+.difficulty { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: -6px 0 18px; }
+.diff-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; }
+.diff-options { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); }
+.diff {
+  min-width: 84px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.86rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.diff:hover { color: var(--text); }
+.diff.on { background: var(--yellow); color: #16130a; }
+.diff:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+.diff-desc { margin: 0; min-height: 1.2em; font-size: 0.8rem; color: var(--muted); }
+
+/* ===== Milestone badge (added to the page, removes itself) ===== */
+.milestone {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  z-index: 6;
+  padding: 8px 18px;
+  border: 2px solid var(--yellow);
+  border-radius: 999px;
+  background: rgba(15, 17, 20, 0.9);
+  color: var(--yellow);
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: milestone 2.4s ease forwards;
+}
+@keyframes milestone {
+  0% { opacity: 0; transform: translate(-50%, 10px) scale(0.9); }
+  12% { opacity: 1; transform: translate(-50%, 0) scale(1.06); }
+  20% { transform: translate(-50%, 0) scale(1); }
+  85% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -8px); }
+}
+
+/* ===== Site footer: links to charity: water ===== */
+.site-footer {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 18px calc(8px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.footer-links { display: flex; align-items: center; gap: 14px; flex: none; }
+.footer-links a { color: var(--text); font-weight: 600; text-decoration: none; }
+.footer-links a:hover { color: var(--yellow); text-decoration: underline; }
+.footer-links .donate { padding: 5px 14px; border-radius: 999px; background: var(--yellow); color: #16130a; }
+.footer-links .donate:hover { background: var(--yellow-soft); color: #16130a; text-decoration: none; }
+@media (max-width: 760px) {
+  .site-footer { padding-inline: 14px; }
+  .footer-note { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .diff { min-width: 0; padding: 8px 12px; }
+}
+@media (max-width: 420px) {
+  .footer-note { display: none; }
+  .site-footer { justify-content: center; }
+}
+
 /* ===== Landscape phones: full-screen game, buttons float on top =====
    (kept last so it wins over the narrow-screen rules above) */
 @media (max-height: 500px) and (orientation: landscape) {
+  .site-footer { display: none; }
   .app { position: relative; }
 
   /* one slim header row */
